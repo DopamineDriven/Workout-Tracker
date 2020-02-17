@@ -51,3 +51,15 @@ const workoutSchema = new Schema(
     }
   }
 );
+
+// https://mongoosejs.com/docs/api/virtualtype.html#virtualtype_VirtualType-get
+// incorporate dynamically-created properties to workoutSchema
+workoutSchema.virtual("totalDuration").get(function () {
+    return this.exercises.reduce((total, exercise) => {
+        return total+exercise.duration
+    }, 0)
+});
+
+const WorkoutModel = mongoose.model("Workout", workoutSchema);
+
+module.exports = WorkoutModel
