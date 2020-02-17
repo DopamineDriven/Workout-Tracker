@@ -9,6 +9,10 @@ const workoutSchema = new Schema(
       default: Date.now
     },
     exercises: [
+        // emdedded document, similar to fields in SQL
+        // a document within a document
+        // defining type, name, duration, weight, reps, sets, distance
+        // within an embedded document
       {
         type: {
           type: String,
