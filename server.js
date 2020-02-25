@@ -43,7 +43,7 @@ app.get('/stats', (request, response) => {
 
 // getting Workout Schema from models/workout.js
 app.get('/api/workouts', (request, response) => {
-    db.WorkoutModel.find({})
+    db.Workout.find({})
         .then(dbWorkout => {
             response.json(dbWorkout)
         })
