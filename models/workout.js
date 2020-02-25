@@ -1,12 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const moment = require('moment');
+//const dateChicago = moment.parseZone()
+//const dateChicago = moment().tz("America/Chicago").format();
 
 const workoutSchema = new Schema(
   {
     //using seed.js from seeders, define day and exercises
     day: {
       type: Date,
-      default: Date.now
+      default: Date.now(moment)
     },
     exercises: [
         // emdedded document, similar to fields in SQL
