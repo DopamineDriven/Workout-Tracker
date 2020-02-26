@@ -11,7 +11,7 @@ const MONGODB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}
 console.log(MONGODB_URI)
 const PORT = process.env.PORT || 4321;
 
-mongoose.connect(MONGODB_URI || 'mongodb://localhost/Workout-Tracker', {    
+mongoose.connect('mongodb://localhost/Workout-Tracker', {    
     useNewUrlParser: true, 
     useFindAndModify: false,
     useCreateIndex: true,
@@ -57,7 +57,7 @@ app.get('/api/workouts', async (request, response) => {
 
 // create new workout-->post
 app.post('/api/workouts', async (request, response) => {
-    WorkoutModel.create(request.body)
+    WorkoutModel.create({})
         .then(dbWorkout => {
             response.json(dbWorkout)
         })
