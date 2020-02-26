@@ -94,8 +94,9 @@ app.put('/api/workouts/:id', (request, response) => {
             })
 });
 
+// getting 7 most recent workouts logged by user
 app.get('/api/workouts/range', async (request, response) => {
-    db.Workout.find({})
+    db.Workout.find().sort({ day: -1 }).limit(7)
     .then(dbWorkout => {
         response.json(dbWorkout)
     })
