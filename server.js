@@ -105,6 +105,28 @@ app.get('/api/workouts/range', async (request, response) => {
     })
 });
 
+// delete workout by id
+app.delete('/api/workouts/:id', async (request, response) => {
+    WorkoutModel.findOneAndRemove({ _id: request.params.id })
+        .then((dbWorkout) => {
+            if(!dbWorkout) {
+                response
+                    .status(404)
+                    .send("workout not found")
+            }
+            else {
+                response
+                    .send("deleted successfully")
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+            response
+                .status(500)
+                .send("error occurred")
+        })
+});
+
 
 
 app.listen(PORT, () => {
