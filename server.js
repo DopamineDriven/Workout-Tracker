@@ -68,10 +68,12 @@ app.post('/api/workouts', async (request, response) => {
 });
 
 // edit existing workout-->put
-app.put('api/workouts/:id', (request, response) => {
+app.put('/api/workouts/:id', (request, response) => {
+    console.log(request.params.id)
+    console.log(request.body)
     WorkoutModel.findOneAndUpdate(
         { _id: request.params.id }, 
-        { exercises: request.body }, 
+        request.body, 
         { new: true }
         )
             .then((dbWorkout) => {
@@ -91,8 +93,6 @@ app.put('api/workouts/:id', (request, response) => {
                     .send("error occurred")
             })
 });
-
-app.put('')
 
 app.get('/api/workouts/range', async (request, response) => {
     db.Workout.find({})
