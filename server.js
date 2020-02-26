@@ -68,7 +68,7 @@ app.post('/api/workouts', async (request, response) => {
 });
 
 // edit existing workout-->put
-app.put('/api/workouts/:id', (request, response) => {
+app.put('/api/workouts/:id', async (request, response) => {
     console.log(request.params.id)
     console.log(request.body)
     WorkoutModel.findOneAndUpdate(
