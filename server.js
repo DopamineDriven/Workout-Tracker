@@ -57,8 +57,7 @@ app.get('/api/workouts', async (request, response) => {
 
 // create new workout-->post
 app.post('/api/workouts', async (request, response) => {
-    const workout = new WorkoutModel({ exercises: request.body });
-    WorkoutModel.create(workout)
+    WorkoutModel.create(request.body)
         .then(dbWorkout => {
             response.json(dbWorkout)
         })
