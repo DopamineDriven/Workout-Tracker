@@ -82,7 +82,8 @@ app.put('/api/workouts/:id', async (request, response) => {
                     response
                         .status(404)
                         .send(error)
-                } else {
+                } 
+                else {
                     response.json(dbWorkout)
                 }
             })
