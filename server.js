@@ -57,10 +57,19 @@ app.get('/api/workouts', async (request, response) => {
 
 // create new workout-->post
 app.post('/api/workouts', async (request, response) => {
-    WorkoutModel.create({})
+    const workout = new WorkoutModel ({ exercises: request.body })
+    // attempt to save info in DB and return a promise
+    workout
+        .save()
         .then(dbWorkout => {
-            response.json(dbWorkout)
+            if (dbWorkout) {
+                response.json(dbWorkout)
+            } 
+            else {
+                response.send("workout did not save")
+            }
         })
+        // if an unforeseen error occurs, catch
         .catch(error => {
             response
                 .status(501)
