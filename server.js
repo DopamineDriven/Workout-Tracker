@@ -11,7 +11,7 @@ const MONGODB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}
 console.log(MONGODB_URI)
 const PORT = process.env.PORT || 4321;
 
-mongoose.connect(MONGODB_URI || 'mongodb://localhost/Workout-Tracker', {    
+mongoose.connect('mongodb://localhost/Workout-Tracker', {    
     useNewUrlParser: true, 
     useFindAndModify: false,
     useCreateIndex: true,
@@ -57,19 +57,15 @@ app.get('/api/workouts', async (request, response) => {
 
 // create new workout-->post
 app.post('/api/workouts', async (request, response) => {
-    const workout = new WorkoutModel ({ exercises: request.body })
-    // attempt to save info in DB and return a promise
-    workout
-        .save()
+    //if exercise type = resistance then name, weight, sets, reps, duration
+    //else if exercise type = cardio then name, distance, duration
+    console.log(request.body)
+    console.log({ exercises: request.body })
+    const workout = new WorkoutModel(request.body)
+    WorkoutModel.create(workout)
         .then(dbWorkout => {
-            if (dbWorkout) {
-                response.json(dbWorkout)
-            } 
-            else {
-                response.send("workout did not save")
-            }
+            response.json(dbWorkout)
         })
-        // if an unforeseen error occurs, catch
         .catch(error => {
             response
                 .status(501)

@@ -9,7 +9,7 @@ const workoutSchema = new Schema(
     //using seed.js from seeders, define day and exercises
     day: {
       type: Date,
-      default: Date.now(moment)
+      default: Date.now()
     },
     exercises: [
         // emdedded document, similar to fields in SQL
