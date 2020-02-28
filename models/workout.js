@@ -32,8 +32,8 @@ const workoutSchema = new Schema(
           required: "Enter exercise duration in minutes"
         },
         weight: {
-          type: Number,
-          required: "weight in pounds"
+          type: Number
+          //weight in pounds
         },
         reps: {
           type: Number
@@ -42,8 +42,8 @@ const workoutSchema = new Schema(
           type: Number
         },
         distance: {
-          type: Number,
-          required: "distance in miles"
+          type: Number
+          //distance in miles
         }
       }
     ]

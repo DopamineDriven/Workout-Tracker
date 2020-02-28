@@ -76,31 +76,30 @@ app.post('/api/workouts', async (request, response) => {
 
 // edit existing workout-->put
 app.put('/api/workouts/:id', async (request, response) => {
-    console.log(request.params.id)
-    console.log(request.body)
-    WorkoutModel.findByIdAndUpdate(
-        { _id: request.params.id }, 
-        { exercises: request.body }, 
-        { new: true }
-        )
-            .then((dbWorkout) => {
-                if(!dbWorkout) {
+
+        WorkoutModel.findByIdAndUpdate(
+            { _id: request.params.id }, 
+            { $push: { exercises: request.body } }, 
+            { new: true }
+            )
+                .then((dbWorkout) => {
+                    if(!dbWorkout) {
+                        console.log(error)
+                        response
+                            .status(404)
+                            .send(error)
+                    } 
+                    else {
+                        response.json(dbWorkout)
+                    }
+                })
+                .catch((error) => {
                     console.log(error)
                     response
-                        .status(404)
-                        .send(error)
-                } 
-                else {
-                    response.json(dbWorkout)
-                }
-            })
-            .catch((error) => {
-                console.log(error)
-                response
-                    .status(500)
-                    .send("error occurred")
-            })
-});
+                        .status(500)
+                        .send("error occurred")
+                })
+    })
 
 // getting 7 most recent workouts logged by user
 app.get('/api/workouts/range', async (request, response) => {
