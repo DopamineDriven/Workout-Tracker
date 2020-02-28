@@ -10,8 +10,8 @@ require('dotenv').config();
 const MONGODB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds129098.mlab.com:29098/heroku_84l46shs`;
 console.log(MONGODB_URI)
 const PORT = process.env.PORT || 4321;
-
-mongoose.connect('mongodb://localhost/Workout-Tracker', {    
+//'mongodb://localhost/Workout-Tracker'
+mongoose.connect(MONGODB_URI, {    
     useNewUrlParser: true, 
     useFindAndModify: false,
     useCreateIndex: true,
