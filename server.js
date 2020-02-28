@@ -61,7 +61,8 @@ app.post('/api/workouts', async (request, response) => {
     //else if exercise type = cardio then name, distance, duration
     console.log(request.body)
     console.log({ exercises: request.body })
-    const workout = new WorkoutModel(request.body)
+    console.log(request.body.id)
+    const workout = new WorkoutModel({ })
     WorkoutModel.create(workout)
         .then(dbWorkout => {
             response.json(dbWorkout)
@@ -77,9 +78,9 @@ app.post('/api/workouts', async (request, response) => {
 app.put('/api/workouts/:id', async (request, response) => {
     console.log(request.params.id)
     console.log(request.body)
-    WorkoutModel.findOneAndUpdate(
+    WorkoutModel.findByIdAndUpdate(
         { _id: request.params.id }, 
-        request.body, 
+        { exercises: request.body }, 
         { new: true }
         )
             .then((dbWorkout) => {

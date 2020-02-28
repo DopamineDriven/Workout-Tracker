@@ -11,6 +11,8 @@ const API = {
       return json[json.length - 1];
     },
     async addExercise(data) {
+      console.log("this is a message")
+      console.log(location.search)
       const id = location.search.split("=")[1];
   
       const res = await fetch("/api/workouts/" + id, {
