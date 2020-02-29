@@ -11,7 +11,7 @@ const MONGODB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}
 console.log(MONGODB_URI)
 const PORT = process.env.PORT || 4321;
 //'mongodb://localhost/Workout-Tracker'
-mongoose.connect('mongodb://localhost/Workout-Tracker', {    
+mongoose.connect(MONGODB_URI, {    
     useNewUrlParser: true, 
     useFindAndModify: false,
     useCreateIndex: true,
