@@ -7,11 +7,11 @@ const db = require('./models');
 const app = express();
 require('dotenv').config();
 
-const MONGODB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds129098.mlab.com:29098/heroku_84l46shs`;
+const MONGODB_URI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds053784.mlab.com:53784/heroku_mffnqcmb`;
 console.log(MONGODB_URI)
 const PORT = process.env.PORT || 4321;
 //'mongodb://localhost/Workout-Tracker'
-mongoose.connect(MONGODB_URI, {    
+mongoose.connect('mongodb://localhost/Workout-Tracker', {    
     useNewUrlParser: true, 
     useFindAndModify: false,
     useCreateIndex: true,
